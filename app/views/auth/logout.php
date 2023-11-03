@@ -5,4 +5,4 @@
     session_destroy();
 
     # redireciona para a pagina inicial.
-    header('location: index.php');
+    header('location: ../index.php');

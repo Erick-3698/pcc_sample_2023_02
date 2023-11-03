@@ -5,7 +5,7 @@
     # inclui os arquivos header, menu e login.
     require_once __DIR__ . "/layouts/site/header.php";
     require_once __DIR__ . '/layouts/site/menu.php';
-    // require_once __DIR__ . '/login.php';
+    require_once __DIR__ . '/auth/login.php';
 ?>
 
 <!--DOBRA PALCO PRINCIPAL-->

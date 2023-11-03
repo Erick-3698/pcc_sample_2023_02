@@ -102,4 +102,24 @@ class UsuarioDAO
             return 0;
         }
     }
+
+    public function login($nome, $password)
+    {
+        $query = "SELECT `usuarios`.id, `usuarios`.email, `usuarios`.nome, `usuarios`.status,
+            perfis.id as perfil_id, perfis.nome as perfil, perfis.sigla
+            FROM `usuarios` 
+            INNER JOIN perfis ON perfis.id = `usuarios`.perfil_id 
+            WHERE `usuarios`.nome = :nome 
+            AND `usuarios`.`password` = :password";
+
+        $stmt = $this->dbh->prepare($query);
+        $stmt->bindParam(':nome', $nome);
+        $stmt->bindParam(':password', $password);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_BOTH);
+        $this->dbh = null;
+
+        return $row;
+    }
 }
