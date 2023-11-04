@@ -13,7 +13,13 @@ $rows = $dao->getAll();
                 <h2>Perfis</h2>
             </header>
             <?php if (isset($_GET['error'])  || isset($_GET['msg'])) : ?>
-                <script>$.notify("<?=$_GET['error'] ?? $_GET['msg']?>", "<?=isset($_GET['error'] ) ? 'error': 'success'?>");</script>
+                <script>
+                    Swal.fire({
+                        icon: '<?= isset($_GET['error']) ? 'error' : 'success' ?>',
+                        title: 'PccSample',
+                        text: '<?= $_GET['error'] ?? $_GET['msg'] ?>',
+                    })
+                </script>
             <?php endif ?>
 
 
