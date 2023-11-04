@@ -37,7 +37,7 @@
                         <h2 align="center">Usuários</h2>
                         <header>
                             
-                            <p align="center"><a href="#"><img src="assets/img/listar.png" width="350"></a></p>
+                            <p align="center"><a href="usuarios/"><img src="assets/img/listar.png" width="350"></a></p>
                             
                         </header>
                     </article>

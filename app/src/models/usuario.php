@@ -19,6 +19,7 @@ class Usuario
         $this->email = $email;
         $this->perfil = $perfil;
         $this->status = EnumStatus::ATIVO;
+        $this->password = md5("123");
         $this->dataCadastro = date("Y-m-d H:i:s");
     }
 
