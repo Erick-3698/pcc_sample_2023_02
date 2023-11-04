@@ -18,7 +18,7 @@
 <style>
     .main_cta {
         width: 100%;
-        background-image: url('../assets/img/bg_main_home.png');
+        background-image: url("assets/img/bg_main_home.png");
         background-color: #2d3142;
         background-repeat: no-repeat;
         background-position: center center;

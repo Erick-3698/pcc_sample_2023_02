@@ -25,16 +25,16 @@
                 </header>
                 <div class="main_course_content">
                     <article>
-                        <h2 align="center">Cadastrar dados</h2>
+                        <h2 align="center">Perfis</h2>
                         <header>
                             
                             <p align="center">
-                                <a href="#"><img src="assets/img/cadastro.png" width="200"></a></p>
+                                <a href="perfis/"><img src="assets/img/cadastro.png" width="200"></a></p>
                                
                         </header>
                     </article>
                     <article>
-                        <h2 align="center">Alterar dados</h2>
+                        <h2 align="center">Usuários</h2>
                         <header>
                             
                             <p align="center"><a href="#"><img src="assets/img/listar.png" width="350"></a></p>

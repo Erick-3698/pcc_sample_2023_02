@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/../../../src/dao/perfildao.php";
-require_once __DIR__ . "/../../../src/models/perfil.php";
+require_once __DIR__ . "/../../src/dao/perfildao.php";
+require_once __DIR__ . "/../../src/models/perfil.php";
 
 $nome = trim(filter_input(INPUT_POST, "nome", FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 $sigla = strtoupper(trim(filter_input(INPUT_POST, "sigla", FILTER_SANITIZE_FULL_SPECIAL_CHARS)));

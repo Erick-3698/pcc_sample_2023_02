@@ -1,11 +1,11 @@
 <?php
-    # para trabalhar com sessões sempre iniciamos com session_start.
-    session_start();
+# para trabalhar com sessões sempre iniciamos com session_start.
+session_start();
 
-    # inclui os arquivos header, menu e login.
-    require_once __DIR__ . "/layouts/site/header.php";
-    require_once __DIR__ . '/layouts/site/menu.php';
-    require_once __DIR__ . '/auth/login.php';
+# inclui os arquivos header, menu e login.
+require_once __DIR__ . "/layouts/site/header.php";
+require_once __DIR__ . '/layouts/site/menu.php';
+require_once __DIR__ . '/auth/login.php';
 ?>
 
 <!--DOBRA PALCO PRINCIPAL-->
@@ -13,17 +13,17 @@
 <!--1ª DOBRA-->
 
 <main>
-    
+
     <?php
-        # verifica se a variavel $_GET error existe. Se sim, exibe mensagem de error.
-        # se não passa direto.
-        if(isset($_GET['error'])) {
-            echo "<div>";
-            echo "<p>". $_GET['error'] . "</p>";
-            echo "</div>";
-        }
+    # verifica se a variavel $_GET error existe. Se sim, exibe mensagem de error.
+    # se não passa direto.
+    if (isset($_GET['error'])) {
+        echo "<div>";
+        echo "<p>" . $_GET['error'] . "</p>";
+        echo "</div>";
+    }
     ?>
-    <div class="main_cta">
+    <div class="main_opc">
         <article class="main_cta_content">
             <div class="main_cta_content_spacer">
                 <header>
