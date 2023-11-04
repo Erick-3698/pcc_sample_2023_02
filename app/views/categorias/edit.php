@@ -1,33 +1,51 @@
 <?php
 require_once __DIR__ . "/../layouts/admin/header.php";
-require_once __DIR__ . "/../../../src/dao/categoriadao.php";
+require_once __DIR__ . "/../../src/dao/categoriadao.php";
 
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT) ?? 0;
+
 $dao = new CategoriaDAO();
-$categoria = $dao->getById($id);
-if (!$categoria) {
+$row = $dao->getById($id);
+if (!$row) {
     header("location: index.php?error=Categoria não encontrado!", 301);
 }
 ?>
+<main>
+    <div class="main_opc">
 
-<form method="post" action="store.php">
-    <input type="hidden" 
-        name="id" 
-        value="<?= $categoria['id'] ?? 0 ?>"
-    >
-    <input type="text" 
-        name="nome" 
-        placeholder="Informe o nome"
-        required
-        autofocus
-        value="<?= $categoria['nome'] ?? '' ?>"
-    >
-    <select name="status">
-        <option value="1" <?=$categoria['status']=="1"? 'selected': ''?>>ATIVO</option>
-        <option value="0" <?=$categoria['status']=="0"? 'selected': ''?>>INATIVO</option>
-    </select>
-    <button type="submit">Save</button>
-</form>
-<a href="index.php">Voltar</a>
-<?php require_once __DIR__ . "/../layouts/admin/footer.php" ?>
-<?php ?>
+        <section class="main_course" id="escola">
+            <header class="novo__form__titulo">
+                <h2>Categorias</h2>
+            </header>
+
+            <div class="novo__form__section">
+                <form method="post" action="store.php" class="novo__form">
+                    <input type="hidden" name="id" value="<?=$row['id']?>">    
+
+                    <div class="novo__form__section">
+                        <label>Nome</label>
+                        <input type="text" name="nome" placeholder="Informe o nome" value="<?=$row['nome']?>" required>
+                    </div>
+
+                    <div class="novo__form__section">
+                        <label>Status</label>
+                        <select name="status">
+                            <option value="1" <?=$row['status'] == '1' ? 'selected': ''?>>ATIVO</option>
+                            <option value="0" <?=$row['status'] == '0' ? 'selected': ''?>>INATIVO</option>
+                        </select>
+                    </div>
+
+                    <div class="novo__form__section">
+                        <button type="submit" class="btn">Save</button>
+                        <a href="index.php" class="btn">Voltar</a>
+                    </div>
+                </form>
+
+            </div>
+        </section>
+    </div>
+</main>
+
+</body>
+
+</html>

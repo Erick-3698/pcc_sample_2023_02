@@ -1,21 +1,38 @@
-<?php 
-require_once __DIR__ ."/../layouts/admin/header.php"; 
-?>
+<?php require_once __DIR__ . "/../layouts/admin/header.php"; ?>
+<main>
+    <div class="main_opc">
 
-<form method="post" action="store.php">
-    <input type="text" 
-        name="nome" 
-        placeholder="Informe o nome"
-        required
-        autofocus
-    >
-    <select name="status">
-        <option value="1">ATIVO</option>
-        <option value="0">INATIVO</option>
-    </select>
-    <button type="submit">Save</button>
-</form>
-<a href="index.php">Voltar</a>
+        <section class="main_course" id="escola">
+            <header class="novo__form__titulo">
+                <h2>Categorias</h2>
+            </header>
 
-<?php require_once __DIR__ ."/../layouts/admin/footer.php" ?>
-<?php ?>
+            <div class="novo__form__section">
+                <form method="post" action="store.php" class="novo__form">
+                    <div class="novo__form__section">
+                        <label>Nome</label>
+                        <input type="text" name="nome" placeholder="Informe o nome" required>
+                    </div>
+
+                    <div class="novo__form__section">
+                        <label>Status</label>
+                        <select name="status">
+                            <option value="1">ATIVO</option>
+                            <option value="0">INATIVO</option>
+                        </select>
+                    </div>
+
+                    <div class="novo__form__section">
+                        <button type="submit" class="btn">Save</button>
+                        <a href="index.php" class="btn">Voltar</a>
+                    </div>
+                </form>
+
+            </div>
+        </section>
+    </div>
+</main>
+
+</body>
+
+</html>

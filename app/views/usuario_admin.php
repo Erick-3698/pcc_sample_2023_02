@@ -41,6 +41,14 @@
                             
                         </header>
                     </article>
+                    <article>
+                        <h2 align="center">Categorias</h2>
+                        <header>
+                            
+                            <p align="center"><a href="categorias/"><img src="assets/img/instrutor.png" width="350"></a></p>
+                            
+                        </header>
+                    </article>
 
                 </div>
                 </article>
