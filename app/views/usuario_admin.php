@@ -29,7 +29,7 @@
                         <header>
                             
                             <p align="center">
-                                <a href="perfis/"><img src="assets/img/cadastro.png" width="200"></a></p>
+                                <a href="perfis/"><img src="assets/img/categorias.png" width="350"></a></p>
                                
                         </header>
                     </article>
@@ -37,7 +37,7 @@
                         <h2 align="center">Usuários</h2>
                         <header>
                             
-                            <p align="center"><a href="usuarios/"><img src="assets/img/listar.png" width="350"></a></p>
+                            <p align="center"><a href="usuarios/"><img src="assets/img/instrutor.png" width="350"></a></p>
                             
                         </header>
                     </article>
@@ -45,7 +45,15 @@
                         <h2 align="center">Categorias</h2>
                         <header>
                             
-                            <p align="center"><a href="categorias/"><img src="assets/img/instrutor.png" width="350"></a></p>
+                            <p align="center"><a href="categorias/"><img src="assets/img/cadastro.png" width="350"></a></p>
+                            
+                        </header>
+                    </article>
+                    <article>
+                        <h2 align="center">Artigos</h2>
+                        <header>
+                            
+                            <p align="center"><a href="artigos/"><img src="assets/img/listar.png" width="350"></a></p>
                             
                         </header>
                     </article>

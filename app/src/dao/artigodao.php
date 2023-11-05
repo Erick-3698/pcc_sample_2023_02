@@ -13,7 +13,16 @@ class ArtigoDAO
 
     public function getAll()
     {
-        $query = "SELECT * FROM artigos;";
+        $query = "SELECT 
+                    artigos.id, artigos.titulo, artigos.texto, artigos.status, artigos.data_publicacao,
+                    artigos.imagem, artigos.categoria_id, artigos.usuario_id, 
+                    categorias.nome as categoria,
+                    usuarios.nome as usuario
+                FROM artigos
+                INNER JOIN categorias ON categorias.id = artigos.categoria_id
+                INNER JOIN usuarios ON usuarios.id = artigos.usuario_id
+                ORDER BY artigos.data_publicacao DESC, 
+                    categorias.nome;";
 
         $stmt = $this->dbh->query($query);
         $rows = $stmt->fetchAll();
@@ -24,7 +33,15 @@ class ArtigoDAO
 
     public function getById(int $id)
     {
-        $query = "SELECT * FROM artigos WHERE id = :id;";
+        $query = "SELECT 
+                    artigos.id, artigos.titulo, artigos.texto, artigos.status, artigos.data_publicacao,
+                    artigos.imagem, artigos.categoria_id, artigos.usuario_id, 
+                    categorias.nome as categoria,
+                    usuarios.nome as usuario
+                FROM artigos
+                INNER JOIN categorias ON categorias.id = artigos.categoria_id
+                INNER JOIN usuarios ON usuarios.id = artigos.usuario_id
+                WHERE artigos.id = :id;";
 
         $stmt = $this->dbh->prepare($query);
         $stmt->bindParam(':id', $id);
@@ -66,8 +83,8 @@ class ArtigoDAO
             $stmt->bindValue(':status', $artigo->getStatus());
             $stmt->bindValue(':data_publicacao', $artigo->getDataPublicacao());
             $stmt->bindValue(':imagem', $artigo->getImage());
-            $stmt->bindValue(':categoria_id', $artigo->getCategoria()->getId());
-            $stmt->bindValue(':usuario_id', $artigo->getUsuario()->getId());
+            $stmt->bindValue(':categoria_id', $artigo->getCategoria());
+            $stmt->bindValue(':usuario_id', $artigo->getUsuario());
 
             $result = (int) $stmt->execute();
             $this->dbh = null;
@@ -97,8 +114,8 @@ class ArtigoDAO
             $stmt->bindValue(':status', $artigo->getStatus());
             $stmt->bindValue(':data_publicacao', $artigo->getDataPublicacao());
             $stmt->bindValue(':imagem', $artigo->getImage());
-            $stmt->bindValue(':categoria_id', $artigo->getCategoria()->getId());
-            $stmt->bindValue(':usuario_id', $artigo->getUsuario()->getId());
+            $stmt->bindValue(':categoria_id', $artigo->getCategoria());
+            $stmt->bindValue(':usuario_id', $artigo->getUsuario());
             $stmt->bindValue(':id', $artigo->getId());
 
             $result = $stmt->execute();

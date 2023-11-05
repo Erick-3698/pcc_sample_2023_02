@@ -11,15 +11,15 @@ class Artigo
     private $status = EnumStatus::ATIVO;
     private $dataPublicacao;
     private $image;
-    private Categoria $categoria;
-    private Usuario $usuario;
+    private $categoria;
+    private $usuario;
 
-    public function __construct($id, $titulo, $texto, EnumStatus $status, $dataPublicacao, $image, Categoria $categoria, $usuario)
+    public function __construct($id, $titulo, $texto, $status, $dataPublicacao, $image, $categoria, $usuario)
     {
         $this->id = $id;
         $this->titulo = $titulo;
         $this->texto = $texto;
-        $this->titulo = $status;
+        $this->status = $status;
         $this->dataPublicacao = $dataPublicacao;
         $this->image = $image;
         $this->categoria = $categoria;
