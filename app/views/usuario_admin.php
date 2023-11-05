@@ -56,7 +56,7 @@ if (Seguranca::isLogado() && Seguranca::isUsuario()) {
                         </header>
                     </article>
                     
-                    <?php if (Seguranca::isAdminstrador() || Seguranca::isEditor()) : ?>
+                    <?php if (Seguranca::isAdminstrador() || Seguranca::isGerente()) : ?>
                     <article>
                         <h2 align="center">Categorias</h2>
                         <header>

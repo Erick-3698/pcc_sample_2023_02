@@ -27,4 +27,7 @@
             </ul>
         </nav>
     </div>
+    <?php if (Seguranca::isLogado()): ?>
+        <p style="text-align: right;color: #fff;padding: 10px 20px;"><b>Usuário: </b><?=Seguranca::getUsuarioLogado()?></p>
+    <?php endif ?>
 </header>

@@ -15,18 +15,18 @@ class Seguranca
         return false;
     }
 
-    public static function isAutor()
-    {
-        if (self::isLogado()) {
-            return strtoupper($_SESSION['usuario']['perfil']) == 'AUT' ? true : false;
-        }
-        return false;
-    }
-
     public static function isEditor()
     {
         if (self::isLogado()) {
             return strtoupper($_SESSION['usuario']['perfil']) == 'EDI' ? true : false;
+        }
+        return false;
+    }
+    
+    public static function isGerente()
+    {
+        if (self::isLogado()) {
+            return strtoupper($_SESSION['usuario']['perfil']) == 'GER' ? true : false;
         }
         return false;
     }
@@ -37,6 +37,14 @@ class Seguranca
             return strtoupper($_SESSION['usuario']['perfil']) == 'ADM' ? true : false;
         }
         return false;
+    }
+
+    public static function getUsuarioLogado()
+    {
+        if (self::isLogado()) {
+            return trim($_SESSION['usuario']['nome']);
+        }
+        return "";
     }
 }
 

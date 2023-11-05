@@ -13,6 +13,7 @@
             </ul>
         </nav>
     </div>
+    <p style="text-align: right;color: #fff;padding-right:20px; padding-bottom: 5px;"><b>Usuário: </b><?=Seguranca::getUsuarioLogado()?></p>
 </header>
 
 <style>
