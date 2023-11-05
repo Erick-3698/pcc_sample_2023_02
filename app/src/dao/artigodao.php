@@ -30,8 +30,8 @@ class ArtigoDAO
 
         return $rows;
     }
-    
-    public function getByCategoriaId($categoriaId)
+
+    public function getByCategoriaIdOrTitulo($categoriaId, $titulo)
     {
         $query = "SELECT 
                     artigos.id, artigos.titulo, artigos.texto, artigos.status, artigos.data_publicacao,
@@ -40,14 +40,22 @@ class ArtigoDAO
                     usuarios.nome as usuario
                 FROM artigos
                 INNER JOIN categorias ON categorias.id = artigos.categoria_id
-                INNER JOIN usuarios ON usuarios.id = artigos.usuario_id
-                WHERE artigos.categoria_id = :categoriaId 
-                ORDER BY artigos.data_publicacao DESC, 
+                INNER JOIN usuarios ON usuarios.id = artigos.usuario_id ";
+        if ($titulo != "") {
+            $query .= " WHERE artigos.titulo like :titulo";
+        } else {
+            $query .= " WHERE artigos.categoria_id = :categoriaId";
+        }
+        $query .= " ORDER BY artigos.data_publicacao DESC, 
                     categorias.nome;";
 
         $stmt = $this->dbh->prepare($query);
-        $stmt->bindParam(':categoriaId', $categoriaId);
-        $stmt->execute();
+        if ($titulo != "") {
+            $stmt->bindValue(':titulo', "%" . $titulo . "%" );
+        } else {
+            $stmt->bindValue(':categoriaId', $categoriaId);
+        }
+            $stmt->execute();
         $rows = $stmt->fetchAll();
         $this->dbh = null;
 

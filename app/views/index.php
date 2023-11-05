@@ -15,13 +15,13 @@ const UPLOAD_DIR = "assets/img/artigos/";
 $categoriaDAO = new CategoriaDAO();
 $categorias = $categoriaDAO->getAll();
 
-$categoriaId = isset($_GET['categoria']) ? $_GET['categoria'] : 0;
-
+$categoriaId = isset($_GET['categoria']) ? $_GET['categoria'] : "0";
+$filtroTitulo = isset($_GET['filtro']) ? trim($_GET['filtro']) : "";
 $dao = new ArtigoDAO();
-if ($categoriaId == "0") {
+if ($categoriaId == "0" && $filtroTitulo == "") {
     $rows = $dao->getAll();
 } else {
-    $rows = $dao->getByCategoriaId($categoriaId);
+    $rows = $dao->getByCategoriaIdOrTitulo($categoriaId, $filtroTitulo);
 }
 
 
@@ -48,8 +48,8 @@ if ($categoriaId == "0") {
         <header class="main_blog_header">
             <h1 class="icon-blog">Nosso Últimos Artigos</h1>
             <p>Aqui você encontra os artigos necessários para auxiliar na sua caminhada web.</p>
-            <div>
-                <select name="categorias" onchange="filtroPorCategoria(this.value);" style="margin-top: 10px;width:500px;">
+            <div style="display: flex; justify-content: space-between;">
+                <select name="categorias" onchange="filtroPorCategoria(this.value);" style="margin-top: 10px;width:50%;">
                     <option value="0">Todas as categorias</option>
                     <?php
                     foreach ($categorias as $categoria) {
@@ -61,7 +61,17 @@ if ($categoriaId == "0") {
                     }
                     ?>
                 </select>
-            </div>
+                <form style="width: 49%; display: flex;margin-top: 10px;gap: 5px;;">
+                    <input 
+                        type="text" 
+                        name="filtro" 
+                        placeholder="Informe o nome do artigo a ser buscado." 
+                        value="<?= isset($_GET['filtro'])?$_GET['filtro']:'';?>" 
+                        autofocus
+                        style="width: 95%;">
+                    <button type="submit" class="btn novo__form__btn__cadastrar">Buscar</button>
+                </form>
+                </div>
         </header>
 
 
@@ -72,11 +82,12 @@ if ($categoriaId == "0") {
                 <a href="artigos/show.php?id=<?= $row['id'] ?>">
                     <img src="<?= $imagem ?>" width="200px" height="200px" alt="<?= $row['titulo'] ?>" title="<?= $row['titulo'] ?>">
                 </a>
-                <p><a href="" class="category"><?= $row['categoria'] ?></a></p>
+                <p><a href="index.php?categoria=<?=$row['categoria_id']?>" class="category"><?= $row['categoria'] ?></a></p>
+                <p class="title"><?= $row['titulo'] ?></p>
                 <h2>
-                    <a href="" class="title" title="<?= $row['texto'] ?>">
+                    <p class="title" title="<?= $row['texto'] ?>">
                         <?= (strlen($row['texto']) > 100) ? substr($row['texto'], 0, 100) . "(...)" : substr($row['texto'], 0, strlen($row['texto'])) ?>
-                    </a>
+                    </p>
                 </h2>
             </article>
         <?php endforeach ?>
