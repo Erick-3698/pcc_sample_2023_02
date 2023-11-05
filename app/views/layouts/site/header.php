@@ -13,9 +13,10 @@
     <link href="assets/css/fonticon.css" rel="stylesheet">
     <link href="assets/css/login.css" rel="stylesheet">
     <link href="assets/css/lista.css" rel="stylesheet">
-
-    <script type="text/javascript" src="assets/js/modal.js"></script>
     <link href="assets/css/modal.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="assets/js/modal.js"></script>
     <title>Projeto PCC</title>
 </head>
 

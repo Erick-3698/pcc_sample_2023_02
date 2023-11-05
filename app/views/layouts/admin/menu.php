@@ -2,7 +2,7 @@
 
 <header class="main_header">
     <div class="main_header_content">
-        <a href="index.html" class="logo">
+        <a href="index.php" class="logo">
             <img src="assets/img/logo.png" alt="Bem vindo ao projeto prático Html5 e Css3 Essentials" title="Bem vindo ao projeto prático Html5 e Css3 Essentials"></a>
 
         <nav class="main_header_content_menu">

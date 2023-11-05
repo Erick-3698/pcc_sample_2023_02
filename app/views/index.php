@@ -24,7 +24,6 @@ if ($categoriaId == "0" && $filtroTitulo == "") {
     $rows = $dao->getByCategoriaIdOrTitulo($categoriaId, $filtroTitulo);
 }
 
-
 ?>
 
 <!--DOBRA PALCO PRINCIPAL-->
