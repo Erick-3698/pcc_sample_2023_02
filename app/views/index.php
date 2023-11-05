@@ -7,11 +7,23 @@ require_once __DIR__ . "/layouts/site/header.php";
 require_once __DIR__ . '/layouts/site/menu.php';
 require_once __DIR__ . '/auth/login.php';
 require_once __DIR__ . "/../src/dao/artigodao.php";
+require_once __DIR__ . "/../src/dao/categoriadao.php";
 
 const UPLOAD_DIR = "assets/img/artigos/";
 
+
+$categoriaDAO = new CategoriaDAO();
+$categorias = $categoriaDAO->getAll();
+
+$categoriaId = isset($_GET['categoria']) ? $_GET['categoria'] : 0;
+
 $dao = new ArtigoDAO();
-$rows = $dao->getAll();
+if ($categoriaId == "0") {
+    $rows = $dao->getAll();
+} else {
+    $rows = $dao->getByCategoriaId($categoriaId);
+}
+
 
 ?>
 
@@ -36,23 +48,40 @@ $rows = $dao->getAll();
         <header class="main_blog_header">
             <h1 class="icon-blog">Nosso Últimos Artigos</h1>
             <p>Aqui você encontra os artigos necessários para auxiliar na sua caminhada web.</p>
+            <div>
+                <select name="categorias" onchange="filtroPorCategoria(this.value);" style="margin-top: 10px;width:500px;">
+                    <option value="0">Todas as categorias</option>
+                    <?php
+                    foreach ($categorias as $categoria) {
+                        echo "<option value='"
+                            . $categoria['id'] . "'"
+                            . ($categoriaId == $categoria['id'] ? ' selected' : '') . ">"
+                            . $categoria['nome']
+                            . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
         </header>
-        <?php foreach($rows as $row): ?>
-        <?php $imagem = ($row['imagem'] == "" || is_null($row['imagem'])) ? "semimagem.jpg" :$row['imagem']; $imagem = UPLOAD_DIR . $imagem; ?>
+
+
+        <?php foreach ($rows as $row) : ?>
+            <?php $imagem = ($row['imagem'] == "" || is_null($row['imagem'])) ? "semimagem.jpg" : $row['imagem'];
+            $imagem = UPLOAD_DIR . $imagem; ?>
             <article>
-                <a href="artigos/show.php?id=<?=$row['id']?>">
-                    <img src="<?= $imagem?>" width="200px" height="200px" alt="<?=$row['titulo']?>" title="<?=$row['titulo']?>">
+                <a href="artigos/show.php?id=<?= $row['id'] ?>">
+                    <img src="<?= $imagem ?>" width="200px" height="200px" alt="<?= $row['titulo'] ?>" title="<?= $row['titulo'] ?>">
                 </a>
-                <p><a href="" class="category"><?=$row['categoria']?></a></p>
+                <p><a href="" class="category"><?= $row['categoria'] ?></a></p>
                 <h2>
-                    <a href="" class="title" title="<?=$row['texto']?>">
-                    <?=(strlen($row['texto']) > 100) ? substr($row['texto'], 0, 100) . "(...)" : substr($row['texto'], 0, strlen($row['texto'])) ?>
+                    <a href="" class="title" title="<?= $row['texto'] ?>">
+                        <?= (strlen($row['texto']) > 100) ? substr($row['texto'], 0, 100) . "(...)" : substr($row['texto'], 0, strlen($row['texto'])) ?>
                     </a>
                 </h2>
             </article>
         <?php endforeach ?>
-        
-        
+
+
     </section>
 
     <!--FIM SESSÃO SESSÃO DE ARTIGOS-->
@@ -365,6 +394,11 @@ $rows = $dao->getAll();
         </div>
     </section>
     <!--FIM DOBRA TUTOR-->
+    <script>
+        function filtroPorCategoria(valorId) {
+            window.location.href = "index.php?categoria=" + valorId;
+        }
+    </script>
 </main>
 
 <!-- inclui o arquivo de rodape do site -->
