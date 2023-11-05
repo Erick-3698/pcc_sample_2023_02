@@ -6,6 +6,13 @@ session_start();
 require_once __DIR__ . "/layouts/site/header.php";
 require_once __DIR__ . '/layouts/site/menu.php';
 require_once __DIR__ . '/auth/login.php';
+require_once __DIR__ . "/../src/dao/artigodao.php";
+
+const UPLOAD_DIR = "assets/img/artigos/";
+
+$dao = new ArtigoDAO();
+$rows = $dao->getAll();
+
 ?>
 
 <!--DOBRA PALCO PRINCIPAL-->
@@ -13,29 +20,16 @@ require_once __DIR__ . '/auth/login.php';
 <!--1ª DOBRA-->
 
 <main>
+    <?php if (isset($_GET['error'])  || isset($_GET['msg'])) : ?>
+        <script>
+            Swal.fire({
+                icon: '<?= isset($_GET['error']) ? 'error' : 'success' ?>',
+                title: 'PccSample',
+                text: '<?= $_GET['error'] ?? $_GET['msg'] ?>',
+            })
+        </script>
+    <?php endif ?>
 
-    <?php
-    # verifica se a variavel $_GET error existe. Se sim, exibe mensagem de error.
-    # se não passa direto.
-    if (isset($_GET['error'])) {
-        echo "<div>";
-        echo "<p>" . $_GET['error'] . "</p>";
-        echo "</div>";
-    }
-    ?>
-    <div class="main_opc">
-        <article class="main_cta_content">
-            <div class="main_cta_content_spacer">
-                <header>
-                    <h1>Aqui você aprende tudo o que é necessário<br> para trabalhar como um Webmaster FullStack
-                    </h1>
-                </header>
-                <p>Domine o HTML e o Css3 de uma vez por todas</p>
-                <p><a href="#" class="btn">Saiba Mais</a></p>
-            </div>
-        </article>
-    </div>
-    <!--FIM 1ª DOBRA-->
 
     <!--INICIO SESSÃO SESSÃO DE ARTIGOS-->
     <section class="main_blog">
@@ -43,102 +37,18 @@ require_once __DIR__ . '/auth/login.php';
             <h1 class="icon-blog">Nosso Últimos Artigos</h1>
             <p>Aqui você encontra os artigos necessários para auxiliar na sua caminhada web.</p>
         </header>
-
-        <article>
-            <a href="#">
-                <img src="assets/img/post.jpg" width="200" alt="Imagem post" title="Imagem Post">
-            </a>
-            <p><a href="" class="category">Categoria</a></p>
-            <h2><a href="" class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam magnam
-                    error dolorem. Recusandae,
-                    quo ex laborum voluptate pariatur praesentium error doloremque cumque, mollitia laboriosam vel
-                    aut
-                    et eveniet eaque quaerat!</a></h2>
-        </article>
-
-        <article>
-            <a href="#">
-                <img src="assets/img/post.jpg" width="200" alt="Imagem post" title="Imagem Post">
-            </a>
-            <p><a href="" class="category">Categoria</a></p>
-            <h2><a href="" class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam magnam
-                    error dolorem. Recusandae,
-                    quo ex laborum voluptate pariatur praesentium error doloremque cumque, mollitia laboriosam vel
-                    aut
-                    et eveniet eaque quaerat!</a></h2>
-        </article>
-
-        <article>
-            <a href="#">
-                <img src="assets/img/post.jpg" width="200" alt="Imagem post" title="Imagem Post">
-            </a>
-            <p><a href="" class="category">Categoria</a></p>
-            <h2><a href="" class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam magnam
-                    error dolorem. Recusandae,
-                    quo ex laborum voluptate pariatur praesentium error doloremque cumque, mollitia laboriosam vel
-                    aut
-                    et eveniet eaque quaerat!</a></h2>
-        </article>
-
-        <article>
-            <a href="#">
-                <img src="assets/img/post.jpg" width="" alt="Imagem post" title="Imagem Post">
-            </a>
-            <p><a href="" class="category">Categoria</a></p>
-            <h2><a href="" class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam magnam
-                    error dolorem. Recusandae,
-                    quo ex laborum voluptate pariatur praesentium error doloremque cumque, mollitia laboriosam vel
-                    aut
-                    et eveniet eaque quaerat!</a></h2>
-        </article>
-
-        <article>
-            <a href="#">
-                <img src="assets/img/post.jpg" width="" alt="Imagem post" title="Imagem Post">
-            </a>
-            <p><a href="" class="category">Categoria</a></p>
-            <h2><a href="" class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam magnam
-                    error dolorem. Recusandae,
-                    quo ex laborum voluptate pariatur praesentium error doloremque cumque, mollitia laboriosam vel
-                    aut
-                    et eveniet eaque quaerat!</a></h2>
-        </article>
-
-        <article>
-            <a href="#">
-                <img src="assets/img/post.jpg" width="" alt="Imagem post" title="Imagem Post">
-            </a>
-            <p><a href="" class="category">Categoria</a></p>
-            <h2><a href="" class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam magnam
-                    error dolorem. Recusandae,
-                    quo ex laborum voluptate pariatur praesentium error doloremque cumque, mollitia laboriosam vel
-                    aut
-                    et eveniet eaque quaerat!</a></h2>
-        </article>
-
-        <article>
-            <a href="#">
-                <img src="assets/img/post.jpg" width="" alt="Imagem post" title="Imagem Post">
-            </a>
-            <p><a href="" class="category">Categoria</a></p>
-            <h2><a href="" class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam magnam
-                    error dolorem. Recusandae,
-                    quo ex laborum voluptate pariatur praesentium error doloremque cumque, mollitia laboriosam vel
-                    aut
-                    et eveniet eaque quaerat!</a></h2>
-        </article>
-
-        <article>
-            <a href="#">
-                <img src="assets/img/post.jpg" width="" alt="Imagem post" title="Imagem Post">
-            </a>
-            <p><a href="" class="category">Categoria</a></p>
-            <h2><a href="" class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam magnam
-                    error dolorem. Recusandae,
-                    quo ex laborum voluptate pariatur praesentium error doloremque cumque, mollitia laboriosam vel
-                    aut
-                    et eveniet eaque quaerat!</a></h2>
-        </article>
+        <?php foreach($rows as $row): ?>
+        <?php $imagem = ($row['imagem'] == "" || is_null($row['imagem'])) ? "semimagem.jpg" :$row['imagem']; $imagem = UPLOAD_DIR . $imagem; ?>
+            <article>
+                <a href="#">
+                    <img src="<?= $imagem?>" width="200px" height="200px" alt="<?=$row['titulo']?>" title="<?=$row['titulo']?>">
+                </a>
+                <p><a href="" class="category"><?=$row['categoria']?></a></p>
+                <h2><a href="" class="title"><?=$row['texto']?></a></h2>
+            </article>
+        <?php endforeach ?>
+        
+        
     </section>
 
     <!--FIM SESSÃO SESSÃO DE ARTIGOS-->
