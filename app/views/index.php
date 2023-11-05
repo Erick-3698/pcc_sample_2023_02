@@ -40,11 +40,15 @@ $rows = $dao->getAll();
         <?php foreach($rows as $row): ?>
         <?php $imagem = ($row['imagem'] == "" || is_null($row['imagem'])) ? "semimagem.jpg" :$row['imagem']; $imagem = UPLOAD_DIR . $imagem; ?>
             <article>
-                <a href="#">
+                <a href="artigos/show.php?id=<?=$row['id']?>">
                     <img src="<?= $imagem?>" width="200px" height="200px" alt="<?=$row['titulo']?>" title="<?=$row['titulo']?>">
                 </a>
                 <p><a href="" class="category"><?=$row['categoria']?></a></p>
-                <h2><a href="" class="title"><?=$row['texto']?></a></h2>
+                <h2>
+                    <a href="" class="title" title="<?=$row['texto']?>">
+                    <?=(strlen($row['texto']) > 100) ? substr($row['texto'], 0, 100) . "(...)" : substr($row['texto'], 0, strlen($row['texto'])) ?>
+                    </a>
+                </h2>
             </article>
         <?php endforeach ?>
         

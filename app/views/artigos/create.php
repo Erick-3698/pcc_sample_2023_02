@@ -17,6 +17,11 @@ $rows = $dao->getAll();
             <div class="novo__form__section">
                 <form method="post" action="store.php" enctype="multipart/form-data" class="novo__form">
                     <div class="novo__form__section">
+                        <label>Data da Publicação</label>
+                        <input type="date" name="dataPublicacao" required>
+                    </div>
+
+                    <div class="novo__form__section">
                         <label>Título</label>
                         <input type="text" name="titulo" placeholder="Informe o título" required autofocus>
                     </div>
@@ -35,16 +40,6 @@ $rows = $dao->getAll();
                     </div>
 
                     <div class="novo__form__section">
-                        <label>Data da Publicação</label>
-                        <input type="date" name="dataPublicacao" required>
-                    </div>
-
-                    <div class="novo__form__section">
-                        <label>Imagem</label>
-                        <input type="file" name="imagem" placeholder="Informe o imagem" accept="image/png, image/jpeg" required>
-                    </div>
-
-                    <div class="novo__form__section">
                         <label>Categoria</label>
                         <select name="categoria">
                             <?php foreach ($rows as $row) : ?>
@@ -52,6 +47,12 @@ $rows = $dao->getAll();
                             <?php endforeach ?>
                         </select>
                     </div>
+
+                    <div class="novo__form__section">
+                        <label>Imagem</label>
+                        <input type="file" name="imagem" placeholder="Informe o imagem" accept="image/png, image/jpeg" required>
+                    </div>
+
 
                     <div class="novo__form__section">
                         <button type="submit" class="btn">Save</button>
