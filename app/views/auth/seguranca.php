@@ -2,8 +2,16 @@
 
 class Seguranca
 {
+    private static function isSessaoIniciada()
+    {
+        if (session_status() != PHP_SESSION_ACTIVE) {
+            session_start();
+        }    
+    }
+
     public static function isLogado()
     {
+        self::isSessaoIniciada();
         return isset($_SESSION['usuario']);
     }
 

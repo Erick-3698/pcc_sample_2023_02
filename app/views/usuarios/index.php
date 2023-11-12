@@ -1,6 +1,12 @@
 <?php
 require_once __DIR__ . "/../layouts/admin/header.php";
 require_once __DIR__ . "/../../src/dao/usuariodao.php";
+require_once __DIR__ . "/../auth/seguranca.php";
+
+if (!Seguranca::isAdminstrador()) {
+    header("location: ../index.php?error=Usuário não tem permissão para acessar esse recurso.", 301);
+    exit;
+}
 
 $dao = new UsuarioDAO();
 $rows = $dao->getAll();
@@ -11,6 +17,7 @@ $rows = $dao->getAll();
             <header class="novo__form__titulo">
                 <h2>Usuários</h2>
             </header>
+
             <?php if (isset($_GET['error'])  || isset($_GET['msg'])) : ?>
                 <script>
                     Swal.fire({

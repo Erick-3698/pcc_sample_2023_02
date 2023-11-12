@@ -1,7 +1,12 @@
 <?php
 require_once __DIR__ . "/../layouts/admin/header.php";
 require_once __DIR__ . "/../../src/dao/perfildao.php";
+require_once __DIR__ . "/../auth/seguranca.php";
 
+if (!Seguranca::isAdminstrador()) {
+    header("location: ../index.php?error=Usuário não tem permissão para acessar esse recurso.", 301);
+    exit;
+}
 $dao = new PerfilDAO();
 $rows = $dao->getAll();
 
