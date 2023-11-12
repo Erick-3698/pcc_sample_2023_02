@@ -50,6 +50,17 @@ CREATE TABLE pccsampledb.artigos (
     FOREIGN KEY (usuario_id) REFERENCES pccsampledb.usuarios(id)
 );
 
+-- cria uma tabela chamada artigos_usuarios com os campos: 
+-- artigo_id, usuario_id, data_avaliacao e avalicaco.
+CREATE TABLE pccsampledb.avaliacao_artigos_usuarios (
+    artigo_id       INTEGER ,
+    usuario_id      INTEGER,
+    data_avaliacao  DATETIME DEFAULT NOW(),
+    avaliacao       SMALLINT NOT NULL DEFAULT 1,
+    FOREIGN KEY (artigo_id) REFERENCES pccsampledb.artigos(id),
+    FOREIGN KEY (usuario_id) REFERENCES pccsampledb.usuarios(id) 
+);
+
 -- SCRIPT DE DML - DATA MANIPULATION LANGUAGE
 -- inserir dados na tabela de perfil. 
 INSERT INTO pccsampledb.perfis (id, nome, sigla) 
