@@ -67,9 +67,11 @@ Esse projeto possui perfis de acesso ao sistema. Onde cada um deles permite exec
 
 ### Diagrama de classes
 
+![image](https://github.com/RoniePetersonDF2/pcc_sample_2023_02/assets/5281345/276ec9a7-fcf8-43c8-bf2e-786b7aea1cca)
 
 ### Diagrama de casos de uso
 
+![image](https://github.com/RoniePetersonDF2/pcc_sample_2023_02/assets/5281345/5ef63c51-8778-4ee3-8fd7-edbec8c10d21)
 
 
 
